@@ -73,3 +73,5 @@ Pesos de cada Ativo:
 
 Retorno da Carteira = 13,73 + 5,58 -> 19,31%
 
+### CAPM (Capital Asset Pricing Model)
+

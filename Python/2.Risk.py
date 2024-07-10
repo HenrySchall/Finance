@@ -17,21 +17,32 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import train_test_split
 
-
 # Trazendo Dados Exportados
-dataset = pd.read_csv('dataset_df.csv')
-dataset
+# dataset = pd.read_csv('dataset_df.csv')
+# dataset
 
-# Limpando colunas não necessárias
-dataset.drop(labels=['RL Vale'], axis=1, inplace=True)
-dataset.drop(labels=['RL Itau'], axis=1, inplace=True)
-dataset.drop(labels=['RL Wege'], axis=1, inplace=True)
-dataset.drop(labels=['RS Vale'], axis=1, inplace=True)
-dataset.drop(labels=['RS Itau'], axis=1, inplace=True)
-dataset.drop(labels=['RS Wege'], axis=1, inplace=True)
+# Preparando Dados
+dataset = ['VALE3.SA', 'WEGE3.SA', 'ITUB4.SA', 'BOVA11.SA']
 
-dataset
-dataset.describe()
+dataset_vector = pd.DataFrame()
+for acao in dataset:
+  dataset_vector[acao] = yf.download(acao, start='2015-01-02', end=None)['Close']
+dataset_vector
+
+dataset_df = dataset_vector.rename(columns={'VALE3.SA': 'VALE', 'WEGE3.SA': 'WEGE','ITUB4.SA': 'ITAU', 'BOVA11.SA': 'BOVA'})
+dataset_df
+
+dataset_df.isnull().sum()
+dataset_df.dropna(inplace=True)
+dataset_df.isnull().sum()
+
+dataset_df_normalizado = dataset_df.copy()
+for i in dataset_df_normalizado.columns[0:]:
+  dataset_df_normalizado[i] = dataset_df_normalizado[i] / dataset_df_normalizado[i][0]
+dataset_df_normalizado
+
+dataset_df_normalizado.plot(xlabel='Date', figsize = (15,7), title = 'Histórico do preço das ações (Normalizado)')
+plt.show()
 
 ############################
 ### Retornos Anuais Vale ###

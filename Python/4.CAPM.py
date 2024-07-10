@@ -30,11 +30,12 @@ for acao in dataset:
 dataset_vector
 
 dataset_df = dataset_vector.rename(columns={'VALE3.SA': 'VALE', 'WEGE3.SA': 'WEGE','ITUB4.SA': 'ITAU', 'BOVA11.SA': 'BOVA'})
-dataset_df
 
 dataset_df.isnull().sum()
 dataset_df.dropna(inplace=True)
 dataset_df.isnull().sum()
+
+dataset_df
 
 dataset_df_normalizado = dataset_df.copy()
 for i in dataset_df_normalizado.columns[0:]:

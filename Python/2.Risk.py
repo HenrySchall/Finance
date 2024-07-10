@@ -17,52 +17,47 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import train_test_split
 
-# Trazendo Dados Exportados
-# dataset = pd.read_csv('dataset_df.csv')
-# dataset
-
 # Preparando Dados
-dataset = ['VALE3.SA', 'WEGE3.SA', 'ITUB4.SA', 'BOVA11.SA']
+dataset_df = ['VALE3.SA', 'WEGE3.SA', 'ITUB4.SA', 'BOVA11.SA']
 
 dataset_vector = pd.DataFrame()
-for acao in dataset:
-  dataset_vector[acao] = yf.download(acao, start='2015-01-02', end=None)['Close']
+for acao in dataset_df:
+  dataset_vector[acao] = yf.download(acao, start='2015-01-02', end='2023-12-31')['Close']
 dataset_vector
 
-dataset_df = dataset_vector.rename(columns={'VALE3.SA': 'VALE', 'WEGE3.SA': 'WEGE','ITUB4.SA': 'ITAU', 'BOVA11.SA': 'BOVA'})
-dataset_df
+dataset = dataset_vector.rename(columns={'VALE3.SA': 'VALE', 'WEGE3.SA': 'WEGE','ITUB4.SA': 'ITAU', 'BOVA11.SA': 'BOVA'})
 
-dataset_df.isnull().sum()
-dataset_df.dropna(inplace=True)
-dataset_df.isnull().sum()
+dataset.isnull().sum()
+dataset.dropna(inplace=True)
+dataset.isnull().sum()
 
-dataset_df_normalizado = dataset_df.copy()
-for i in dataset_df_normalizado.columns[0:]:
-  dataset_df_normalizado[i] = dataset_df_normalizado[i] / dataset_df_normalizado[i][0]
-dataset_df_normalizado
+dataset
 
-dataset_df_normalizado.plot(xlabel='Date', figsize = (15,7), title = 'Histórico do preço das ações (Normalizado)')
-plt.show()
+dataset.to_csv('dataset_df.csv')
+dataset = pd.read_csv('dataset_df.csv')
+dataset
 
 ############################
 ### Retornos Anuais Vale ###
 ############################
 
+# dataset.loc[dataset['Date'] == "None"]
+
 # 2021
-dataset['VALE'][dataset['Date'] == '2021-12-30']
 dataset['VALE'][dataset['Date'] == '2021-01-04']
+dataset['VALE'][dataset['Date'] == '2021-12-30']
 
 np.log(77.95/91.45)*100
 
 # 2022
-dataset['VALE'][dataset['Date'] == '2022-12-29']
 dataset['VALE'][dataset['Date'] == '2022-01-03']
+dataset['VALE'][dataset['Date'] == '2022-12-29']
 
 np.log(88.87/78.0)*100
 
 # 2023
-dataset['VALE'][dataset['Date'] == '2023-12-28'] 
 dataset['VALE'][dataset['Date'] == '2023-01-02']
+dataset['VALE'][dataset['Date'] == '2023-12-28'] 
 
 np.log(77.1/89.40)*100
 
@@ -75,21 +70,23 @@ np.log(77.1/89.40)*100
 ### Retornos Anuais Wege ###
 ############################
 
+# dataset.loc[dataset['Date'] == "None"]
+
 # 2021
-dataset['WEGE'][dataset['Date'] == '2021-12-30']
 dataset['WEGE'][dataset['Date'] == '2021-01-04']
+dataset['WEGE'][dataset['Date'] == '2021-12-30']
 
 np.log(32.98/37.31)*100 
 
 # 2022
-dataset['WEGE'][dataset['Date'] == '2022-12-28']
 dataset['WEGE'][dataset['Date'] == '2022-01-03']
+dataset['WEGE'][dataset['Date'] == '2022-12-28']
 
 np.log(38.70/32.02)*100
 
 # 2023
-dataset['WEGE'][dataset['Date'] == '2023-12-27']
 dataset['WEGE'][dataset['Date'] == '2023-01-02']
+dataset['WEGE'][dataset['Date'] == '2023-12-27']
 
 np.log(36.84/38.09)*100
 
@@ -107,24 +104,22 @@ retorno_vale = np.array([-15.97, 13.04, 14.80])
 retorno_wege = np.array([-12.33, 18.94, -3.33])
 
 media_vale = retorno_vale.mean()
-media_vale
-#3.95
+media_vale # -> 3.95
 
 media_wege = retorno_wege.mean()
-media_wege
-#1.09
+media_wege # -> 1.09
 
 #################
 ### Variância ###
 #################
 
-var_vale = retorno_vale.var()
-var_vale
-#199.05
+variancia_vale = retorno_vale.var()
+variancia_vale # -> 199.05
 
-var_wege = retorno_wege.var()
-var_wege 
-#172.75
+variancia_wege = retorno_wege.var()
+variancia_wege # -> 172.75
+
+# dataset['VALE'].tail(30).var()
 
 #####################
 ### Desvio Padrão ###
@@ -133,23 +128,16 @@ var_wege
 # Quanto maior o desvio padrão, maior é o risco (maior variação)
 
 desvio_padrao_vale = retorno_vale.std()
-#14.10% -> Varição do preço 
+# 14.10% -> Varição do preço 
 
 desvio_padrao_wege = retorno_wege.std()
-#5.65% -> Varição do preço
+# 5.65% -> Varição do preço
 
-# Volatilidade do preço
-dataset['VALE'].tail(30).std(), dataset['WEGE'].tail(30).std()
+# dataset['VALE'].tail(30).std()
 
 ###############################
 ### Coeficiente de variação ###
 ###############################
-
-# Mede estatisticamente a dispersão relativa, risco por unidade de retorno. Quanto maior o CV, maior o risco. É muito útil na
-# comparação dos riscos de ativos com retornos esperados diferentes
-
-# oeficiente_variacao_vale = (desvio_padrao_vale / media_vale) * 100
-#coeficiente_variacao_vale
 
 stats.variation(retorno_vale)*100
 stats.variation(retorno_wege)*100
@@ -170,30 +158,77 @@ stats.variation(retorno_wege)*100
 dataset.drop(labels = ['Date'], axis=1, inplace=True)
 dataset
 
-# Retorno 
+# Retorno Simples
 taxas_retorno = (dataset / dataset.shift(1)) - 1
 taxas_retorno
 
-# Desvio Padrão do Período(%)
+# Desvio Padrão do Período
 taxas_retorno.std()*100
 
-# VALE    7.050217 -> maior risco
-# WEGE    5.320871
-# ITAU    4.991104
-# BOVA    3.904960 -> menor risco
+# VALE    2.88% -> maior risco
+# WEGE    2.17%
+# ITAU    2.03%
+# BOVA    1.59% -> menor risco
 
 # Desvio Padrão Médio Anual 
-taxas_retorno.std()*246
+taxas_retorno.std()*252
+
+# VALE    7.26%
+# WEGE    5.46%
+# ITAU    5.13%
+# BOVA    4.02%
 
 # Valores anualizados
-taxas_retorno.std()*math.sqrt(246)
+taxas_retorno.std()*math.sqrt(252)
 
 ################################
 ### Correlação & Covariância ###
 ################################
 
-taxas_retorno
-taxas_retorno.cov()
+# Matriz de Correlações
 taxas_retorno.corr()
-plt.figure(figsize=(8,8))
-sns.heatmap(taxas_retorno.corr(), annot=True);
+
+# Matriz de Covariâncias
+taxas_retorno.cov()
+
+#          VALE      WEGE      ITAU      BOVA
+# VALE  0.000832  0.000132  0.000193  0.000263
+# WEGE  0.000132  0.000471  0.000152  0.000179
+# ITAU  0.000193  0.000152  0.000415  0.000256
+# BOVA  0.000263  0.000179  0.000256  0.000255
+
+# Gráfico
+plt.figure(figsize=(8,8)) 
+sns.heatmap(taxas_retorno.corr(), annot=True, cmap='coolwarm', linewidths=0.5)
+plt.title('Matriz de Correlação')
+plt.show()
+
+#######################
+### Risco Portfolio ###
+#######################
+
+dataset.columns
+
+# Carteira
+pesos = np.array([0.33, 0.33, 0.34, 0.0])
+pesos.sum()
+
+taxas_retorno.cov()
+taxas_retorno.cov() * 252
+
+# Variância do Portfolio
+np.dot(taxas_retorno.cov() * 252, pesos)
+np.dot(pesos, np.dot(taxas_retorno.cov() * 252, pesos))
+
+# Desvio Padrão do Portfolio
+math.sqrt(np.dot(pesos, np.dot(taxas_retorno.cov() * 252, pesos))) * 100
+
+# BOVa (Mercado)
+pesos2 = np.array([0.0, 0.0, 0.0, 1.0])
+
+# Variância do BOVA
+np.dot(taxas_retorno.cov() * 252, pesos2)
+np.dot(pesos2, np.dot(taxas_retorno.cov() * 252, pesos2))
+
+# Desvio Padrão do BOVA
+math.sqrt(np.dot(pesos2, np.dot(taxas_retorno.cov() * 252, pesos))) * 100

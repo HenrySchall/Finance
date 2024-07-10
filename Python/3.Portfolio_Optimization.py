@@ -16,15 +16,3 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import train_test_split
-
-# COV(Vale,Wege)
-covariancia_vale_bova = matriz_correlacao_port .iloc[0, 1]
-covariancia_vale_bova
-
-# COV(Vale,Itau)
-covariancia_vale_bova = matriz_correlacao_port .iloc[0, 2]
-covariancia_vale_bova
-
-# COV(Wege,Itau)
-covariancia_vale_bova = matriz_correlacao_port .iloc[1, 2]
-covariancia_vale_bova

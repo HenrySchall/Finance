@@ -221,9 +221,9 @@ np.dot(taxas_retorno.cov() * 252, pesos)
 np.dot(pesos, np.dot(taxas_retorno.cov() * 252, pesos))
 
 # Desvio Padrão do Portfolio
-math.sqrt(np.dot(pesos, np.dot(taxas_retorno.cov() * 252, pesos))) * 100
+math.sqrt(np.dot(pesos, np.dot(taxas_retorno.cov() * 252, pesos))) * 100 # -> 27.31%
 
-# BOVa (Mercado)
+# BOVA (Mercado)
 pesos2 = np.array([0.0, 0.0, 0.0, 1.0])
 
 # Variância do BOVA
@@ -231,4 +231,29 @@ np.dot(taxas_retorno.cov() * 252, pesos2)
 np.dot(pesos2, np.dot(taxas_retorno.cov() * 252, pesos2))
 
 # Desvio Padrão do BOVA
-math.sqrt(np.dot(pesos2, np.dot(taxas_retorno.cov() * 252, pesos))) * 100
+math.sqrt(np.dot(pesos2, np.dot(taxas_retorno.cov() * 252, pesos))) * 100 # -> 24.22%
+
+#########################
+### Risco Sistemático ###
+#########################
+
+taxas_retorno
+
+# Carteira 
+variancia_pesos = (taxas_retorno.var() * 252) * pesos
+variancia_pesos
+
+# Subtraindo as variâncias
+sub = variancia_pesos[0] - variancia_pesos[1] - variancia_pesos[2] - variancia_pesos[3]
+sub
+
+# Variância do Portfolio
+variancia_portfolio = np.dot(pesos, np.dot(taxas_retorno.cov() * 252, pesos))
+variancia_portfolio
+
+# Risco Sistemático Portfolio
+risco_nao_sistematico = (variancia_portfolio - sub) * 100
+risco_nao_sistematico # -> 8.01%
+
+# Observa-se que do Risco do portfolio foi de 27.31%. Sendo assim desses 27,31%, 
+# podemos dizer que 8.01% são de risco não sistemático.

@@ -104,3 +104,13 @@ $R1 = Rf + \beta1 * (Rm - Rf)$
 - Rf = Risk Free (Ativo Livre de Risco)
 - $\beta1$ = beta da empresa
 - Rm = Risco de Mercado
+
+Interpretação do Beta 
+- B > 1 -> Agressivo
+- B < 1 -> Defensivo
+- B = 1 -> Neutro ou Beta do Mercado
+- B < 0 -> Contrário ao Mercado
+- B = 0 -> Ativo Livre de Risco
+  
+![foto_page-0001](https://github.com/HenrySchall/Finance/assets/96027335/6f11e3dd-7199-4cb8-902e-77f3fb7d54fc)
+

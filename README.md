@@ -1,10 +1,10 @@
 # Finance
 
 ### Taxa de Crescimento 
- Reflete o quanto estamos multiplicamos nosso capital sobre o valor da data de compra. Para calcularmos ela usaremos os valores dos ativos normalizados, ou seja, dividindo o preço de fechamento de cada dia, pelo preço inicial de compra.
+> Reflete o quanto estamos multiplicamos nosso capital sobre o valor da data de compra. Para calcularmos ela usaremos os valores dos ativos normalizados, ou seja, dividindo o preço de fechamento de cada dia, pelo preço inicial de compra.
  
 ### Taxa de Retorno Simples
- A taxa de retorno simples é uma métrica financeira utilizada para avaliar a rentabilidade de um investimento ao longo de um período de tempo específico, ela é utilizada quando se quer **comparar ações distintas**.
+> A taxa de retorno simples é uma métrica financeira utilizada para avaliar a rentabilidade de um investimento ao longo de um período de tempo específico, ela é utilizada quando se quer **comparar ações distintas**.
 
 $RS = (pf + div) - pi/(pi) * 100$
 
@@ -33,7 +33,7 @@ TOTS3
 > $RS = (3.573 + 25 - 10) - (2.793 + 10)/(2.793 + 10) * 100$ -> 28,0% 
 
 ### Taxa de Retorno Logaritmica
- Também conhecida como taxa de retorno contínuo. Assim como a taxa de retorno simples, ela avalia a rentabilidade de um investimento ao longo de um período de tempo específico, sendo utilizada quando se quer **comparar a mesma ações em períodos diferentes**.
+> Também conhecida como taxa de retorno contínuo. Assim como a taxa de retorno simples, ela avalia a rentabilidade de um investimento ao longo de um período de tempo específico, sendo utilizada quando se quer **comparar a mesma ações em períodos diferentes**.
 
 $RL = log⁡(pf/pi)* 100$
 
@@ -74,4 +74,11 @@ Pesos de cada Ativo:
 Retorno da Carteira = 13,73 + 5,58 -> 19,31%
 
 ### CAPM (Capital Asset Pricing Model)
+> É um modelo financeiro utilizado para determinar a taxa de retorno esperada de um investimento, dado o risco em relação ao mercado
 
+$R1 = Rf + \beta1 * (Rm - Rf)$
+
+- R1 = Retorno esperado
+- Rf = Risk Free (Ativo Livre de Risco)
+- $\beta1$ = beta da empresa
+- Rm = Risco de Mercado

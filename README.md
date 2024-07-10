@@ -131,7 +131,8 @@ O objetivo do gestor financeiro é criar uma carteira eficiente,
 que maximize o retorno para certo nível de risco ou minimize o
 risco para determinado nível de retorno
 
-![Mercado de Capitais_removed_page-0001](https://github.com/HenrySchall/Finance/assets/96027335/32281fa3-5140-409a-8686-5a92ba8ad08d)
+![image](https://github.com/HenrySchall/Finance/assets/96027335/3af52f76-c600-46f1-9489-544b30fbfa77)
+
 
 ### CAPM (Capital Asset Pricing Model)
 > É um modelo que determina uma taxa de retorno esperada, para um ativo ou de um portfólio de ativos, considerando um mercado em equilíbrio (perfeito), com o risco não diversificável (de mercado), via coeficiente beta ($\beta1$).

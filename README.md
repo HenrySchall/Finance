@@ -89,7 +89,10 @@ Retorno da Carteira = 13,73 + 5,58 -> 19,31%
 ### Índice de Sharpe ###
 ########################
 
+## Risco sistemático e não sistemático
 
+- Risco sistemático: mudança diária no preço das ações, devido a eventos como recessão da economia, comportamento do cliente (eventos externos). Não pode ser eliminado e pode afetar todas as empresas
+- Risco não sistemático: Eventos específicos na empresa (depende do tipo de empresa)
 
 
 ### CAPM (Capital Asset Pricing Model)

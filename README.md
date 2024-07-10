@@ -73,6 +73,25 @@ Pesos de cada Ativo:
 
 Retorno da Carteira = 13,73 + 5,58 -> 19,31%
 
+# Mede estatisticamente a dispersão relativa, risco por unidade de retorno. Quanto maior o CV, maior o risco. É muito útil na
+# comparação dos riscos de ativos com retornos esperados diferentes
+
+###############################
+### Coeficiente de variação ###
+###############################
+
+
+#########################
+### Índice de Treynor ###
+#########################
+
+########################
+### Índice de Sharpe ###
+########################
+
+
+
+
 ### CAPM (Capital Asset Pricing Model)
 > É um modelo financeiro utilizado para determinar a taxa de retorno esperada de um investimento, dado o risco em relação ao mercado
 

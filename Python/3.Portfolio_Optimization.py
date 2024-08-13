@@ -46,7 +46,7 @@ dataset
 ################
 
 valor_total_investido = 5000
-n_pesos = np.array([0.0, 0.0, 0.0, 0.0, 0.0])
+num_pesos = np.array([0.0, 0.0, 0.0, 0.0, 0.0])
 
 alocacao_ativos = (pd.read_csv('dataset_df.csv'), valor_total_investido)
 alocacao_ativos

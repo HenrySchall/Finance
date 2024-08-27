@@ -9,8 +9,8 @@ import seaborn.objects as so
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import plotly.express as px
-import yfinance as yf
 import math as math
+import yfinance as yf
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
